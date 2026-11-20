@@ -1,0 +1,17 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: Format Python
+        entry: ruff format --force-exclude
+        language: python
+        additional_dependencies: [ruff==0.14.4]
+        types_or: [python, pyi]
+
+      - id: clang-format
+        name: Format C++ and CUDA
+        entry: clang-format -i
+        language: python
+        additional_dependencies: [clang-format==20.1.8]
+        types: [file]
+        files: '\.(?:c|cc|cpp|cxx|C|h|hh|hpp|hxx|H|cu|cuh|inl|ipp|tpp)$'
