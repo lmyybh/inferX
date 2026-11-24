@@ -1,17 +1,34 @@
+---
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
   - repo: local
     hooks:
+      - id: taplo-format
+        name: Format TOML
+        entry: taplo fmt
+        language: python
+        additional_dependencies: [taplo==0.9.3]
+        types: [toml]
+      - id: yamlfix
+        name: Format YAML
+        entry: yamlfix
+        language: python
+        additional_dependencies: [yamlfix==1.19.1]
+        types: [yaml]
       - id: ruff-format
         name: Format Python
         entry: ruff format --force-exclude
         language: python
         additional_dependencies: [ruff==0.14.4]
         types_or: [python, pyi]
-
       - id: clang-format
         name: Format C++ and CUDA
         entry: clang-format -i
         language: python
         additional_dependencies: [clang-format==20.1.8]
         types: [file]
-        files: '\.(?:c|cc|cpp|cxx|C|h|hh|hpp|hxx|H|cu|cuh|inl|ipp|tpp)$'
+        files: \.(?:c|cc|cpp|cxx|C|h|hh|hpp|hxx|H|cu|cuh|inl|ipp|tpp)$

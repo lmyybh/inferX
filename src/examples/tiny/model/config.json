@@ -1,0 +1,9 @@
+{
+  "architectures": [
+    "TinyModel"
+  ],
+  "model_type": "tiny",
+  "hidden_size": 16,
+  "vocab_size": 512,
+  "torch_dtype": "bfloat16"
+}
